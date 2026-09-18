@@ -111,19 +111,22 @@ def classify(
 ) -> ClassifierResult:
     """Fit a random forest on the surface features and score it honestly.
 
-    Imported lazily so that the statistics half of this package stays usable
-    without scikit-learn installed.
+    The precondition is checked *before* scikit-learn is imported. Validating
+    after the import makes the check unreachable on a machine without it, so a
+    bad-input error arrives as `ModuleNotFoundError` instead — and the test for
+    that error can only pass where the optional dependency happens to be
+    installed.
     """
-
-    from sklearn.dummy import DummyClassifier
-    from sklearn.ensemble import RandomForestClassifier
-    from sklearn.metrics import roc_auc_score
-    from sklearn.model_selection import train_test_split
 
     x = data.matrix()
     y = list(data.labels)
     if len(set(y)) < 2:
         raise SurfaceFeaturesError("cannot classify: the corpus contains a single class")
+
+    from sklearn.dummy import DummyClassifier
+    from sklearn.ensemble import RandomForestClassifier
+    from sklearn.metrics import roc_auc_score
+    from sklearn.model_selection import train_test_split
 
     x_train, x_test, y_train, y_test = train_test_split(
         x, y, test_size=test_size, random_state=seed, stratify=y
