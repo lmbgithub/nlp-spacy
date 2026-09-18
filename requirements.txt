@@ -1,0 +1,4 @@
+# Needed only to run the experiment against the real corpus.
+# The package core and the test suite are standard library only.
+spacy>=3.7
+scikit-learn>=1.3
