@@ -1,13 +1,16 @@
-# nlp-spacy — surface features and hostile Spanish comments
+# nlp-spacy
 
-Do cheap surface features — verb ratio, adjective ratio, shouting, emotional
-punctuation — separate hostile Spanish comments from ordinary ones? Measured as
-effect sizes rather than differences in means, with a classifier floor to check
-whether the surviving features carry anything a model can use.
+Detecting hostile Spanish comments using cheap surface features — verb ratio,
+adjective ratio, shouting, emotional punctuation.
+
+The project asks whether those features separate hostile comments from ordinary
+ones well enough to be worth using. Differences are reported as effect sizes
+rather than differences in means, and a simple classifier provides a floor that
+shows whether the surviving features carry anything a model can actually use.
 
 **Core package: standard library only.** spaCy and scikit-learn are needed to
-run against the real corpus; neither is needed for the test suite or the
-offline example. **82 tests.**
+run against the real corpus; neither is needed for the test suite or the offline
+example. **82 tests.**
 
 ## Skills demonstrated
 
